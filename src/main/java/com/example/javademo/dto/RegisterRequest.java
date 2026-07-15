@@ -10,7 +10,7 @@ import lombok.Setter;
 
 public class RegisterRequest {
 
-    int a = 100;
+    int b = 200;
 
     @NotBlank(message = "用户名不能为空")
     @Size(max = 50, message = "用户名长度不能超过50个字符")
