@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册账号</title>
+</head>
+
+<body>
+
+<h1>注册账号</h1>
+
+<form th:action="@{/register}"
+      th:object="${registerRequest}"
+      method="post">
+
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}">
+
+    <div th:if="${#fields.hasGlobalErrors()}">
+        <p th:each="error : ${#fields.globalErrors()}"
+           th:text="${error}"
+           style="color: red;">
+        </p>
+    </div>
+
+    <div>
+        <label for="username">用户名：</label>
+
+        <input id="username"
+               type="text"
+               th:field="*{username}">
+
+        <p th:if="${#fields.hasErrors('username')}"
+           th:errors="*{username}"
+           style="color: red;">
+        </p>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="password">密码：</label>
+
+        <input id="password"
+               type="password"
+               th:field="*{password}">
+
+        <p th:if="${#fields.hasErrors('password')}"
+           th:errors="*{password}"
+           style="color: red;">
+        </p>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="confirmPassword">确认密码：</label>
+
+        <input id="confirmPassword"
+               type="password"
+               th:field="*{confirmPassword}">
+
+        <p th:if="${#fields.hasErrors('confirmPassword')}"
+           th:errors="*{confirmPassword}"
+           style="color: red;">
+        </p>
+    </div>
+
+    <br>
+
+    <button type="submit">注册</button>
+
+</form>
+
+<p>
+    已有账号？
+    <a th:href="@{/login}">前往登录</a>
+</p>
+
+</body>
+</html>
